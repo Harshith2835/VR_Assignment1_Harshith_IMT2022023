@@ -1,77 +1,84 @@
-```markdown
 # Computer Vision Projects
 `q1.py` - Coin Detection & Counting  
 `q2.py` - Panorama Stitching
 
+## Folder Structure  
+```
+VR_Assignment1_Harshith_IMT2022023/
+├── input_images/
+│   ├── coins.jpg
+│   ├── panorama_left.jpg
+│   └── panorama_right.jpg
+├── output_images/
+│   ├── canny_edges.jpg
+│   ├── contours_detected.jpg
+│   ├── segmented_coins.jpg
+│   ├── keypoints_1.jpg
+│   ├── keypoints_2.jpg
+│   └── panorama_output.jpg
+├── q1.py
+├── q2.py
+└── README.md
+```
 ## Requirements
 ```bash
-# Create virtual environment (recommended)
-python -m venv cv_env
-source cv_env/bin/activate  # Linux/Mac
-.\cv_env\Scripts\activate   # Windows
-
-# Install dependencies
 pip install opencv-python-headless numpy matplotlib
 ```
 
 ## Part 1: Coin Detection & Counting (q1.py)
-### Methodology
-1. Preprocessing: Resize + Grayscale conversion
-2. Edge Detection: Gaussian blur → Adaptive threshold → Morphological operations → Canny edge
-3. Contour Analysis: Filter by circularity (4πA/P²) & area
-4. Segmentation: Extract individual coins with mask operations
-
-### How to Run
-1. Directory structure:
-```
-.
-├── input_images/
-│   └── coins.jpg      # Input image
-├── output_images/     # Auto-created
-```
-
-2. Execute:
+### Methodology & Explanation
+This implementation detects and counts coins in an image using:
+1. Adaptive thresholding and morphological operations to enhance coin regions
+2. Canny edge detection with post-processing to identify clean boundaries
+3. Contour analysis with circularity filtering to distinguish coins from artifacts
+4. Color segmentation to isolate individual coins
+### How to Run  
+1. Place input image in `input_images/coins.jpg`  
+2. Execute:  
 ```bash
 python q1.py
 ```
+### Results & Visualizations
+| Input | ![Input Coins](./input_images/coins.jpg) |  
+*Original image*
+![Coin Detection Pipeline](./output_images/contours_detected.jpg)
+*Original image with detected coin contours*
 
-3. Outputs:
-- Canny edge detection result
-- Contour boundaries visualization 
-- Color-segmented coins
-- Individual coin ROIs
+![Edge Detection](./output_images/canny_edges.jpg)  
+*Canny edge detection output showing coin boundaries*
 
-![Coin Detection Demo](https://via.placeholder.com/600x200.png?text=Coin+Detection+Visualization)
+![Segmentation Results](./output_images/segmented_coins.jpg)  
+*Color-coded segmentation of different coins*
+
+![Boundary Visualization](./output_images/coin_boundaries.jpg)  
+*Isolated coin boundaries without internal details*
 
 ## Part 2: Panorama Stitching (q2.py)
-### Methodology
-1. Feature Detection: SIFT keypoints
-2. Feature Matching: BFMatcher with ratio test
-3. Homography: RANSAC for robust matrix estimation
-4. Warping: Perspective transformation
-5. Blending: Mask-based image composition
+### Methodology & Explanation
+This implementation stitches two overlapping images using:
+1. SIFT feature detection for scale-invariant keypoints
+2. BFMatcher with Lowe's ratio test for robust feature matching
+3. RANSAC algorithm for homography matrix estimation
+4. Perspective warping and mask blending for seamless stitching
 
-### How to Run
-1. Directory structure:
-```
-.
-├── input_images/
-│   ├── panaroma_left.jpg
-│   └── panaroma_right.jpg
-├── output_images/     # Auto-created
-```
-
-2. Execute:
+### How to Run  
+1. Place images in `input_images/` as:  
+   - `panorama_left.jpg`  
+   - `panorama_right.jpg`  
+2. Execute:  
 ```bash
 python q2.py
 ```
 
-3. Outputs:
-- Keypoints visualization for both images
-- Final stitched panorama
-- Matching keypoints count
+### Results & Visualizations
+![Left Image Features](./output_images/left_image_keypoints.jpg)  
+*Left input image with detected SIFT keypoints*
 
-![Panorama Demo](https://via.placeholder.com/600x200.png?text=Panorama+Stitching+Process)
+![Right Image Features](./output_images/right_image_keypoints.jpg)  
+*Right input image with detected SIFT keypoints*
+
+![Final Panorama](./output_images/final_panorama.jpg)  
+*Stitched panorama result with seamless blending*
 
 ## Key Algorithms
 | Component          | Techniques Used                     |
@@ -81,45 +88,23 @@ python q2.py
 | Image Alignment    | RANSAC, Homography Estimation       |
 | Blending           | Perspective Warping, Mask Blending  |
 
-## Expected Output Structure
-```bash
-output_images/
-├── canny_edges.jpg         # q1 output
-├── coin_boundaries.jpg     # q1 output
-├── contours_detected.jpg   # q1 output
-├── segmented_coins.jpg     # q1 output
-├── left_image_keypoints.jpg # q2 output
-├── right_image_keypoints.jpg # q2 output
-└── final_panorama.jpg      # q2 output
-```
 
-## Troubleshooting
-1. Image Path Errors:
-   - Verify images are in `input_images/`
-   - Check filenames match exactly
-2. Package Issues:
-   - Ensure using OpenCV 4.x+
-   - Use `opencv-python-headless` if GUI issues occur
-3. Stitching Failures:
-   - Ensure 30-50% image overlap
-   - Try swapping image order
+**Part 1 Workflow:**  
+Input → Grayscale Conversion → Edge Detection → Contour Filtering → Segmentation → Counting
 
----
+**Part 2 Workflow:**  
+Image Pair → Feature Detection → Feature Matching → Homography Estimation → Warping → Blending → Panorama
 
-*Note: Actual images will appear in matplotlib windows during execution. Outputs are saved in both PNG format and displayed interactively.*
-```
 
-To use this README:
+## Results & Observations  
 
-1. Save as `README.md` in your project root
-2. Replace placeholder URLs with actual screenshots
-3. Adjust filenames/paths if different from default structure
+### Coin Detection  
+- Successfully detected 4 coins in sample image  
+- Edge detection preserved circular boundaries  
+- Morphological ops removed small artifacts  
 
-The markdown includes:
-- Installation instructions
-- Per-project methodology
-- Visual workflow diagrams
-- Directory structure requirements
-- Command-line execution guide
-- Output expectations
-- Troubleshooting common issues
+### Image Stitching  
+- SIFT found 5000+ keypoints per image  
+- RANSAC eliminated outlier matches  
+- Final panorama shows seamless transition 
+
