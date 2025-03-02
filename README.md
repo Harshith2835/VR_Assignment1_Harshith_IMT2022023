@@ -1,4 +1,4 @@
-# Computer Vision Projects
+# Coin Detection and Panorama Stitching
 `q1.py` - Coin Detection & Counting  
 `q2.py` - Panorama Stitching
 
