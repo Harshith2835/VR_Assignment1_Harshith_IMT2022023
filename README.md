@@ -20,6 +20,7 @@ VR_Assignment1_Harshith_IMT2022023/
 ├── q2.py
 └── README.md
 ```
+
 ## Requirements
 ```bash
 pip install opencv-python-headless numpy matplotlib
@@ -28,40 +29,42 @@ pip install opencv-python-headless numpy matplotlib
 ## Part 1: Coin Detection & Counting (q1.py)
 ### Methodology & Explanation
 This implementation detects and counts coins in an image using:
-1. Adaptive thresholding and morphological operations to enhance coin regions
-2. Canny edge detection with post-processing to identify clean boundaries
-3. Contour analysis with circularity filtering to distinguish coins from artifacts
-4. Color segmentation to isolate individual coins
+1. Adaptive thresholding and morphological operations
+2. Canny edge detection with post-processing
+3. Contour analysis with circularity filtering
+4. Color segmentation for individual coins
+
 ### How to Run  
 1. Place input image in `input_images/coins.jpg`  
 2. Execute:  
 ```bash
 python q1.py
 ```
+
 ### Results & Visualizations 
+
+#### Original Input Image
 ![Input](./input_images/coins.jpg)
-*Original image*
 
-![Coin Detection Pipeline](./output_images/contours_detected.jpg)
-*Original image with detected coin contours*
+#### Detected Coin Contours
+![Coin Contours](./output_images/contours_detected.jpg)
 
+#### Canny Edge Detection
+![Canny Edges](./output_images/canny_edges.jpg)
 
-![Edge Detection](./output_images/canny_edges.jpg)  
-*Canny edge detection output showing coin boundaries*
+#### Color-coded Segmentation
+![Segmented Coins](./output_images/segmented_coins.jpg)
 
-![Segmentation Results](./output_images/segmented_coins.jpg)  
-*Color-coded segmentation of different coins*
-
-![Boundary Visualization](./output_images/coin_boundaries.jpg)  
-*Isolated coin boundaries without internal details*
+#### Isolated Coin Boundaries
+![Coin Boundaries](./output_images/coin_boundaries.jpg)
 
 ## Part 2: Panorama Stitching (q2.py)
 ### Methodology & Explanation
-This implementation stitches two overlapping images using:
-1. SIFT feature detection for scale-invariant keypoints
-2. BFMatcher with Lowe's ratio test for robust feature matching
-3. RANSAC algorithm for homography matrix estimation
-4. Perspective warping and mask blending for seamless stitching
+This implementation stitches images using:
+1. SIFT feature detection
+2. BFMatcher with Lowe's ratio test
+3. RANSAC for homography estimation
+4. Perspective warping and blending
 
 ### How to Run  
 1. Place images in `input_images/` as:  
@@ -73,14 +76,15 @@ python q2.py
 ```
 
 ### Results & Visualizations
-![Left Image Features](./output_images/left_image_keypoints.jpg)  
-*Left input image with detected SIFT keypoints*
 
-![Right Image Features](./output_images/right_image_keypoints.jpg)  
-*Right input image with detected SIFT keypoints*
+#### Left Image Keypoints
+![Left Keypoints](./output_images/left_image_keypoints.jpg)
 
-![Final Panorama](./output_images/final_panorama.jpg)  
-*Stitched panorama result with seamless blending*
+#### Right Image Keypoints
+![Right Keypoints](./output_images/right_image_keypoints.jpg)
+
+#### Final Stitched Panorama
+![Panorama Result](./output_images/final_panorama.jpg)
 
 ## Key Algorithms
 | Component          | Techniques Used                     |
@@ -90,6 +94,7 @@ python q2.py
 | Image Alignment    | RANSAC, Homography Estimation       |
 | Blending           | Perspective Warping, Mask Blending  |
 
+## Workflow Overview
 
 **Part 1 Workflow:**  
 Input → Grayscale Conversion → Edge Detection → Contour Filtering → Segmentation → Counting
@@ -97,16 +102,15 @@ Input → Grayscale Conversion → Edge Detection → Contour Filtering → Segm
 **Part 2 Workflow:**  
 Image Pair → Feature Detection → Feature Matching → Homography Estimation → Warping → Blending → Panorama
 
-
 ## Results & Observations  
 
-### Coin Detection  
-- Successfully detected 4 coins in sample image  
-- Edge detection preserved circular boundaries  
-- Morphological ops removed small artifacts  
+### Coin Detection Results
+- Detected 5 coins in sample image
+- Preserved circular boundaries through edge detection
+- Removed artifacts using morphological operations
 
-### Image Stitching  
-- SIFT found 5000+ keypoints per image  
-- RANSAC eliminated outlier matches  
-- Final panorama shows seamless transition 
-
+### Panorama Stitching Results
+- Detected 5000+ SIFT keypoints per image
+- Achieved seamless transition through RANSAC
+- Maintained image continuity in final panorama
+```
