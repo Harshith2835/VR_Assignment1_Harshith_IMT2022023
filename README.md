@@ -45,6 +45,7 @@ python q1.py
 ![Coin Detection Pipeline](./output_images/contours_detected.jpg)
 *Original image with detected coin contours*
 
+
 ![Edge Detection](./output_images/canny_edges.jpg)  
 *Canny edge detection output showing coin boundaries*
 
