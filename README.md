@@ -113,4 +113,3 @@ Image Pair → Feature Detection → Feature Matching → Homography Estimation 
 - Detected 5000+ SIFT keypoints per image
 - Achieved seamless transition through RANSAC
 - Maintained image continuity in final panorama
-```
