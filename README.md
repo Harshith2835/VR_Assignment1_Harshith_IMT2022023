@@ -46,17 +46,17 @@ python q1.py
 #### Original Input Image
 ![Input](./input_images/coins.jpg)
 
-#### Detected Coin Contours
-![Coin Contours](./output_images/contours_detected.jpg)
-
 #### Canny Edge Detection
 ![Canny Edges](./output_images/canny_edges.jpg)
 
-#### Color-coded Segmentation
-![Segmented Coins](./output_images/segmented_coins.jpg)
-
 #### Isolated Coin Boundaries
 ![Coin Boundaries](./output_images/coin_boundaries.jpg)
+
+#### Detected Coin Contours
+![Coin Contours](./output_images/contours_detected.jpg)
+
+#### Color-coded Segmentation
+![Segmented Coins](./output_images/segmented_coins.jpg)
 
 ## Part 2: Panorama Stitching (q2.py)
 ### Methodology & Explanation
