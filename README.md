@@ -38,8 +38,8 @@ This implementation detects and counts coins in an image using:
 ```bash
 python q1.py
 ```
-### Results & Visualizations
-| Input | ![Input Coins](./input_images/coins.jpg) |  
+### Results & Visualizations 
+![Input](./output_images/contours_detected.jpg)
 *Original image*
 ![Coin Detection Pipeline](./output_images/contours_detected.jpg)
 *Original image with detected coin contours*
@@ -87,8 +87,7 @@ python q2.py
 | Feature Matching   | SIFT, BFMatcher, Lowe's Ratio Test  |
 | Image Alignment    | RANSAC, Homography Estimation       |
 | Blending           | Perspective Warping, Mask Blending  |
-
-
+//
 **Part 1 Workflow:**  
 Input → Grayscale Conversion → Edge Detection → Contour Filtering → Segmentation → Counting
 
